@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义了针对 `com.entity.NewsEntity` 对象进行数据库操作的 SQL 语句 -->
+
+<mapper namespace="com.dao.NewsDao">
+
+	<!-- 定义了一个结果集映射，将查询结果集中的列名映射到实体类中的属性名 -->
+    <resultMap type="com.entity.NewsEntity" id="newsMap">
+        <result property="title" column="title"/>
+        <result property="introduction" column="introduction"/>
+        <result property="picture" column="picture"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+	<!-- 通过 `resultType` 指定返回结果的类型为 `com.entity.vo.NewsVO`，实现对 `news` 表的查询操作 -->
+	<select id="selectListVO"
+		resultType="com.entity.vo.NewsVO" >
+		SELECT * FROM news  news         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 对 `news` 表的查询操作，返回结果的类型同样为 `com.entity.vo.NewsVO` -->
+	<select id="selectVO"
+		resultType="com.entity.vo.NewsVO" >
+		SELECT  news.* FROM news  news 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 通过 `resultType` 指定返回结果的类型为 `com.entity.view.NewsView`，实现对 `news` 表的查询操作 -->
+    <select id="selectListView"
+		resultType="com.entity.view.NewsView" >
+
+		SELECT  news.* FROM news  news 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 对 `news` 表的查询操作，返回结果的类型也为 `com.entity.view.NewsView` -->
+	<select id="selectView"
+		resultType="com.entity.view.NewsView" >
+		SELECT * FROM news  news <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+</mapper>

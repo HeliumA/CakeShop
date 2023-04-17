@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>登陆成功</title>
+    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../xznstatic/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../../xznstatic/css/login.css"/>
+    <style type="text/css">
+        .register {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register form {
+            padding: 20px;
+            box-shadow: 10px 10px 10px rgba(0, 112, 126, 1);
+            border-color: rgba(38, 155, 158, 1);
+            background-color: #fff;
+            border-radius: 20px;
+            border-width: 1px;
+            border-style: solid;
+            width: 400px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center !important;
+        }
+        .register .logo img {
+            display: block;
+            padding: 5px 0;
+            box-shadow: 0 0 6px rgba(255,0,0,.8);
+            border-color: rgba(0,0,0,.3);
+            background-color: #fff;
+            border-radius: 6px;
+            border-width: 0;
+            border-style: solid;
+        }
+        .register .title {
+            margin: 10px auto;
+            padding: 0 10px;
+            box-shadow: 0 0 0px rgba(255,0,0,.8);
+            border-color: rgba(255, 255, 255, 1);
+            background-color: rgba(0, 112, 126, 0.92);
+            color: #fff;
+            border-radius: 8px;
+            border-width: 0;
+            border-style: solid;
+            width: auto;
+            line-height: 40px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .form-item {
+            padding: 0;
+            margin: 0 auto;
+            border-color: rgba(0, 112, 126, 1);
+            background-color: rgba(213, 195, 195, 0);
+            border-radius: 0px;
+            border-width: 0 0 1px 0;
+            border-style: solid;
+            width: 80%;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .form-label {
+            padding: 0 10px;
+            border-radius: 20px;
+            border-color: rgba(0,0,0,0);
+            background-color: transparent;
+            color: rgba(0, 112, 126, 1);
+            text-align: left;
+            border-width: 0;
+            width: 106px;
+            font-size: 16px;
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+<div class="register" id="app">
+    <form class="layui-form login-form" :style='{"padding":"20px","boxShadow":"10px 10px 10px rgba(0, 112, 126, 1)","borderColor":"rgba(38, 155, 158, 1)","backgroundColor":"#fff","borderRadius":"20px","borderWidth":"1px","width":"400px","borderStyle":"solid","justifyContent":"center","height":"auto"}'><h1 class="logo" v-if="false" :style='{"padding":"5px 0","boxShadow":"0 0 6px rgba(255,0,0,.8)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"6px","borderWidth":"0","borderStyle":"solid"}'></h1>
+        <p class="title" v-if="true" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(255, 255, 255, 1)","backgroundColor":"rgba(0, 112, 126, 0.92)","color":"rgba(255, 255, 255, 1)","isshow":true,"borderRadius":"8px","borderWidth":"0","width":"auto","lineHeight":"40px","fontSize":"16px","borderStyle":"solid"}'>登陆成功，正在跳转中...</p>
+    </form>
+</div>
+
+</body>
+</html>

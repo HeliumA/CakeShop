@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义数据库表 address 的 CRUD -->
+
+<mapper namespace="com.dao.AddressDao">
+
+    <resultMap type="com.entity.AddressEntity" id="addressMap">
+        <result property="userid" column="userid"/>
+        <result property="address" column="address"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="isdefault" column="isdefault"/>
+    </resultMap>
+
+	<!-- 查询地址列表并返回AddressVO对象列表 -->
+	<select id="selectListVO"
+		resultType="com.entity.vo.AddressVO" >
+		SELECT * FROM address  address         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 根据条件查询地址并返回AddressVO对象 -->
+	<select id="selectVO"
+		resultType="com.entity.vo.AddressVO" >
+		SELECT  address.* FROM address  address 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 查询地址列表并返回AddressView对象列表 -->
+    <select id="selectListView"
+		resultType="com.entity.view.AddressView" >
+
+		SELECT  address.* FROM address  address 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 从"address"表中查询所有字段 -->
+	<select id="selectView"
+		resultType="com.entity.view.AddressView" >
+		SELECT * FROM address  address <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+</mapper>

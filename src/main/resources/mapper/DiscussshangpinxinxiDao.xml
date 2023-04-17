@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义了与商品信息讨论相关的 SQL 映射关系 -->
+
+<mapper namespace="com.dao.DiscussshangpinxinxiDao">
+
+    <resultMap type="com.entity.DiscussshangpinxinxiEntity" id="discussshangpinxinxiMap">
+        <result property="refid" column="refid"/>
+        <result property="userid" column="userid"/>
+        <result property="nickname" column="nickname"/>
+        <result property="content" column="content"/>
+        <result property="reply" column="reply"/>
+    </resultMap>
+
+	<!-- 根据给定的查询条件查询商品信息讨论列表，并将结果映射为 `com.entity.vo.DiscussshangpinxinxiVO` 类型的对象列表 -->
+	<select id="selectListVO"
+		resultType="com.entity.vo.DiscussshangpinxinxiVO" >
+		SELECT * FROM discussshangpinxinxi  discussshangpinxinxi         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 根据给定的查询条件查询商品信息讨论，并将结果映射为 `com.entity.vo.DiscussshangpinxinxiVO` 类型的对象 -->
+	<select id="selectVO"
+		resultType="com.entity.vo.DiscussshangpinxinxiVO" >
+		SELECT  discussshangpinxinxi.* FROM discussshangpinxinxi  discussshangpinxinxi 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 根据给定的查询条件查询商品信息讨论列表，并将结果映射为 `com.entity.view.DiscussshangpinxinxiView` 类型的对象列表 -->
+    <select id="selectListView"
+		resultType="com.entity.view.DiscussshangpinxinxiView" >
+
+		SELECT  discussshangpinxinxi.* FROM discussshangpinxinxi  discussshangpinxinxi 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<!-- 根据给定的查询条件查询商品信息讨论，并将结果映射为 `com.entity.view.DiscussshangpinxinxiView` 类型的对象 -->
+	<select id="selectView"
+		resultType="com.entity.view.DiscussshangpinxinxiView" >
+		SELECT * FROM discussshangpinxinxi  discussshangpinxinxi <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+</mapper>

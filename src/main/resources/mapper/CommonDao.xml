@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义了一个CommonDao的命名空间，包含了多个SQL语句,可以被其他类调用来完成一些常见的数据库操作 -->
+
+<mapper namespace="com.dao.CommonDao">
+
+	<!-- 查询指定表格中指定列的所有不重复的值，可根据可选参数level和parent进行过滤 -->
+	<select id="getOption" resultType="String" >
+		SELECT distinct ${column} FROM ${table} 
+			where ${column} is not null and ${column} !=''
+			<if test = "level != null"> 
+			and level=#{level} 
+			</if>
+			<if test = "parent != null"> 
+			and parent=#{parent} 
+			</if>
+	</select>
+
+	<!-- 根据表名、列名和列值获取指定表中所有满足条件的记录，返回一个Map对象 -->
+	<select id="getFollowByOption" resultType="map" >
+		SELECT * FROM ${table} where ${column}=#{columnValue}
+	</select>
+
+	<!-- 根据表名、记录id和是否审核通过标志更新指定记录的审核状态 -->
+	<update id="sh">
+		UPDATE ${table} set sfsh=#{sfsh} where id=#{id}
+	</update>
+
+	<!-- 根据表名、列名、提醒开始时间和结束时间统计符合条件的记录数量 -->
+	<select id="remindCount" resultType="int" >
+		SELECT count(1) FROM ${table} 
+			where 1=1 
+			<if test = "type == 1 ">
+				<if test = " remindstart != null ">
+				     and ${column} &gt;= #{remindstart}
+				</if>
+				<if test = " remindend != null ">
+				     and ${column} &lt;= #{remindend}
+				</if>
+			</if>
+						<if test = "type == 2 ">
+				<if test = " remindstart != null ">
+				     and ${column} &gt;= str_to_date(#{remindstart},'%Y-%m-%d')
+				</if>
+				<if test = " remindend != null ">
+				     and ${column} &lt;= str_to_date(#{remindend},'%Y-%m-%d')
+				</if>
+			</if>
+							</select>
+
+	<!-- 根据表名和列名计算指定列的总和、最大值、最小值和平均值,返回一个Map对象 -->
+	<select id="selectCal" resultType="map" >
+		SELECT sum(${column}) sum,max(${column}) max,min(${column}) min,avg(${column}) avg FROM ${table}
+	</select>
+
+	<!-- 根据表名和列名对记录进行分组统计，返回每个组的名称和记录数，返回一个Map对象 -->
+	<select id="selectGroup" resultType="map" >
+		SELECT ${column} , count(1) total FROM ${table} group by ${column}
+	</select>
+
+	<!-- 根据表名、x轴列名和y轴列名统计每个x轴值对应的y轴值的总和，返回一个Map对象 -->
+	<select id="selectValue" resultType="map" >
+		SELECT ${xColumn}, sum(${yColumn}) total FROM ${table} group by ${xColumn}
+	</select>
+	
+</mapper>
